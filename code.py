@@ -10,10 +10,19 @@
 # together, and the script prints which pair just got connected.
 #
 # HOW TO USE:
-# 1. Wire the ribbon cable's candidate signal pins to some Pico GPIOs.
-#    Avoid pins used for onboard LED/USB/etc. Leave out anything you know
-#    for certain is power or ground.
-# 2. Edit PIN_NAMES below to match the GPIOs you actually wired up.
+# 1. SAFETY FIRST: with the ribbon unplugged from the Jornada motherboard
+#    (or the unit powered off), use a multimeter in continuity/resistance
+#    mode to check each of the 24 ribbon pins against a known ground pin
+#    and a known power-rail pin. A real matrix signal line should read
+#    open/high-resistance to both. Do NOT wire a pin that shows a dead
+#    short to power or ground into a GPIO - driving a power rail low with
+#    a GPIO output can damage the Pico or the Jornada board. Only wire the
+#    pins that look like genuine switch-matrix lines.
+# 2. Wire those ribbon pins to the Marble Pico GPIOs listed in PIN_NAMES
+#    below, in order (ribbon pin 1 -> PIN_NAMES[0], pin 2 -> PIN_NAMES[1],
+#    etc.). GP15 is skipped on purpose - it's reserved for board reset.
+#    If you wire things in a different order, just reorder PIN_NAMES to
+#    match.
 # 3. Save this file as "code.py" on the CIRCUITPY drive (CircuitPython runs
 #    it automatically on boot / on save).
 # 4. Open a serial terminal (e.g. `screen`, `mu`, or the Mu/Thonny serial
@@ -25,10 +34,15 @@ import board
 import digitalio
 import time
 
-# ---- EDIT THIS LIST to match how you wired the ribbon cable ----
+# ---- EDIT THIS LIST if you wired the ribbon in a different order ----
+# These are all 25 general-purpose GPIOs on the GroundStudio Marble Pico
+# (GP15 is excluded - it's reserved for board reset, do not use it).
+# A 24-pin ribbon uses the first 24 of these; GP28 is left spare.
 PIN_NAMES = [
     "GP0", "GP1", "GP2", "GP3", "GP4", "GP5", "GP6", "GP7",
-    "GP8", "GP9", "GP10", "GP11", "GP12", "GP13",
+    "GP8", "GP9", "GP10", "GP11", "GP12", "GP13", "GP14",
+    "GP16", "GP17", "GP18", "GP19", "GP20", "GP21", "GP22",
+    "GP26", "GP27",
 ]
 # ------------------------------------------------------------------
 
