@@ -15,3 +15,13 @@ Options discussed:
 4. Ask the Plasticity developers for this as a feature.
 
 Status: waiting for the user to choose a direction.
+
+---
+# QuadRemesher → Blender port request (2026-11-01)
+
+- Inspected QuadRemesher_1.0.1_Maya2022_Win.zip. The remeshing algorithm is in the closed binaries `xremesh.exe` / `xremeshlib.dll`, gated by a license manager. `QuadRemesher.py` is only a Maya UI wrapper.
+- EULA §2 forbids reverse engineering, translating, modifying, and creating derivative works. So the package was not ported.
+- Exoside sells an official Blender version of QuadRemesher.
+- Offered instead: an original Blender retopo addon using QuadriFlow (built into Blender) and/or Instant Meshes (BSD).
+
+Status: waiting for the user to choose.
