@@ -25,3 +25,8 @@ Status: waiting for the user to choose a direction.
 - Offered instead: an original Blender retopo addon using QuadriFlow (built into Blender) and/or Instant Meshes (BSD).
 
 Status: waiting for the user to choose.
+
+## Q: Which is best for hard-surface, silhouette-preserving, low-poly game assets?
+Answer given: neither auto-quad remesher is ideal. Recommended a hard-surface low-poly add-on built on decimation:
+planar dissolve, then collapse with sharp edges/seams protected, auto-smooth/sharp-by-angle, Weighted Normal, and bake setup.
+Instant Meshes would be an optional step for when quads are needed. Waiting for the user to confirm.
